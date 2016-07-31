@@ -9,6 +9,50 @@ ___
 # Reactive Angular 2 Observe Decorators
 Reactive Angular 2 Observe Decorators by @AngularClass
 
+Reactive Observe Decorators
+`@ObserveViewChild`
+`@ObserveViewChildren`
+`@ObserveContentChild`
+`@ObserveContentChildren`
+
+
+All you need to do is set these valies to an `EventEmitter` instance for example.
+```typescript
+//normal component with @Output event
+@Component({
+  selector: 'incrementer',
+  template: `
+  <div>
+    <button (click)="increments.emit(1)">increment</button>
+  </div>`
+})
+class Incrementer {
+  @Output() increments = new EventEmitter();
+}
+
+
+@Component({
+  selector: 'angularclass-app',
+  providers: [],
+  template: `
+    <div>
+      <h4>Child Total Count: {{ counter }}</h4>
+      <incrementer></incrementer>
+      <button #decrement>decrement</button>
+    </div>
+  `,
+  directives: [Incrementer]
+})
+export class AngularclassApp {
+  //query and listen to component output
+  @ObserveViewChild(Incrementer) increments = new EventEmitter();
+  
+  //query and listen to a DOM element
+  @ObserveViewChild('decrement', 'click') decrements = new EventEmitter();
+
+
+}
+```
 
 
 ## Credits
