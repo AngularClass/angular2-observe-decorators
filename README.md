@@ -33,15 +33,14 @@ class Incrementer {
 
 @Component({
   selector: 'angularclass-app',
-  providers: [],
+  directives: [ Incrementer ],
   template: `
     <div>
       <h4>Child Total Count: {{ counter }}</h4>
       <incrementer></incrementer>
       <button #decrement>decrement</button>
     </div>
-  `,
-  directives: [Incrementer]
+  `
 })
 export class AngularclassApp {
   //query and listen to component output
