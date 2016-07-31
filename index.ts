@@ -1,3 +1,41 @@
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  This is what I call "yolo code"
+  where I'm hacking it together just to get it to work.
+  A refactor is planned later after the initial release.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+*/
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/from';
