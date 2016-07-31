@@ -1,15 +1,18 @@
-import { EventEmitter } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/from';
 import {
   Component,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
   ViewChild,
   ViewChildren,
   ContentChild,
   ContentChildren
 } from '@angular/core'
+
+type Type = Function;
 
 /*
 export const ObserveInput = (inputProp?: string) => {
@@ -17,7 +20,7 @@ export const ObserveInput = (inputProp?: string) => {
     target.__value = target.__value || {};
     target.__ee = target.__ee || {};
     target.__sub = target.__sub || {};
-    
+
     //if (inputProp) {
       //Object.defineProperty(target, inputProp, {
         //set(value){
@@ -27,10 +30,10 @@ export const ObserveInput = (inputProp?: string) => {
         //get() {
           //return target[inputProp || prop];
         //}
-      //});  
+      //});
     //}
-  
-    
+
+
     Object.defineProperty(target, prop, {
       set(value){
         if (value instanceof EventEmitter || value instanceof BehaviorSubject) {
@@ -52,19 +55,19 @@ export const ObserveInput = (inputProp?: string) => {
         return target[inputProp || prop];
       }
     });
-    
+
     let l =  Input(inputProp)(target, inputProp || prop);
   }
 }
 */
-   
+
 
 export const ObserveViewChild = (compOrType: Type | string, eventName?: string, options?:any ) => {
   return (target, prop) => {
     target.__listeners = target.__listeners || {};
     target.__ee = target.__ee || {};
     target.__sub = target.__sub || {};
-      
+
     Object.defineProperty(target, prop, {
       set(value){
         if (value instanceof EventEmitter) {
@@ -93,7 +96,7 @@ export const ObserveViewChild = (compOrType: Type | string, eventName?: string, 
           return;
         }
         eventName = eventName || prop;
-        
+
         if (target.__ee[prop]) {
           target.__sub[prop] = Observable.from(value[eventName]).subscribe(target.__ee[prop]);
           return;
@@ -104,7 +107,7 @@ export const ObserveViewChild = (compOrType: Type | string, eventName?: string, 
         return target.__listeners[prop] || target.__ee[prop];
       }
     });
-    
+
     let l =  ViewChild(compOrType)(target, prop);
   }
 }
@@ -115,7 +118,7 @@ export const ObserveContentChild = (compOrType: Type | string, eventName?: strin
     target.__listeners = target.__listeners || {};
     target.__ee = target.__ee || {};
     target.__sub = target.__sub || {};
-      
+
     Object.defineProperty(target, prop, {
       set(value){
         if (value instanceof EventEmitter) {
@@ -144,7 +147,7 @@ export const ObserveContentChild = (compOrType: Type | string, eventName?: strin
           return;
         }
         eventName = eventName || prop;
-        
+
         if (target.__ee[prop]) {
           target.__sub[prop] = Observable.from(value[eventName]).subscribe(target.__ee[prop]);
           return;
@@ -155,17 +158,17 @@ export const ObserveContentChild = (compOrType: Type | string, eventName?: strin
         return target.__listeners[prop] || target.__ee[prop];
       }
     });
-    
+
     let l =  ContentChild(compOrType)(target, prop);
   }
 }
-   
+
 export const ObserveViewChildren = (compOrType: Type | string, eventName?: string, options?:any ) => {
   return (target, prop) => {
     target.__listeners = target.__listeners || {};
     target.__ee = target.__ee || {};
     target.__sub = target.__sub || {};
-      
+
     Object.defineProperty(target, prop, {
       set(value){
         if (value instanceof EventEmitter) {
@@ -194,7 +197,7 @@ export const ObserveViewChildren = (compOrType: Type | string, eventName?: strin
           return;
         }
         eventName = eventName || prop;
-        
+
         if (target.__ee[prop]) {
           target.__sub[prop] = Observable.from(value[eventName]).subscribe(target.__ee[prop]);
           return;
@@ -205,7 +208,7 @@ export const ObserveViewChildren = (compOrType: Type | string, eventName?: strin
         return target.__listeners[prop] || target.__ee[prop];
       }
     });
-    
+
     let l =  ViewChildren(compOrType)(target, prop);
   }
 }
@@ -214,7 +217,7 @@ export const ObserveContentChildren = (compOrType: Type | string, eventName?: st
     target.__listeners = target.__listeners || {};
     target.__ee = target.__ee || {};
     target.__sub = target.__sub || {};
-      
+
     Object.defineProperty(target, prop, {
       set(value){
         if (value instanceof EventEmitter) {
@@ -243,7 +246,7 @@ export const ObserveContentChildren = (compOrType: Type | string, eventName?: st
           return;
         }
         eventName = eventName || prop;
-        
+
         if (target.__ee[prop]) {
           target.__sub[prop] = Observable.from(value[eventName]).subscribe(target.__ee[prop]);
           return;
@@ -254,7 +257,7 @@ export const ObserveContentChildren = (compOrType: Type | string, eventName?: st
         return target.__listeners[prop] || target.__ee[prop];
       }
     });
-    
+
     let l =  ContentChildren(compOrType)(target, prop);
   }
 }
