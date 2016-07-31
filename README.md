@@ -17,6 +17,7 @@ Reactive Observe Decorators
 
 
 All you need to do is set these valies to an `EventEmitter` instance for example.
+
 ```typescript
 //normal component with @Output event
 @Component({
@@ -52,7 +53,52 @@ export class AngularclassApp {
 
 }
 ```
+we also get redux for free
 
+
+```typescript
+//normal component with @Output event
+@Component({
+  selector: 'incrementer',
+  template: `
+  <div>
+    <button (click)="increments.emit(1)">increment</button>
+  </div>`
+})
+class Incrementer {
+  @Output() increments = new EventEmitter();
+}
+
+
+@Component({
+  selector: 'angularclass-app',
+  template: `
+    <div>
+      <h4>Total Count: {{ counterChange }}</h4>
+      <incrementer></incrementer>
+      <button #decrement>decrement</button>
+    </div>
+  `,
+  directives: [Incrementer]
+})
+export class AngularclassApp {
+  //query and listen to component output
+  @ObserveViewChild(Incrementer) increments = new EventEmitter();
+  
+  //query and listen to a DOM element
+  @ObserveViewChild('decrement', 'click') decrements = new EventEmitter();
+
+  // Notice how we're able to just return an Observable
+  counterChange = Observable.merge(
+    this.increments,
+    this.decrements.mapTo(-1)
+  )
+  .startWith(0)
+  .scan((total, value) => total + value, 0);
+    
+
+}
+```
 
 ## Credits
 [Rob Wormald](https://github.com/robwormald) from the Angular team and ngrx team [Proposal: Support declarative binding from View events to Observables](https://github.com/angular/angular/issues/4062)
