@@ -16,27 +16,28 @@
   This is what I call "yolo code"
   where I'm hacking it together just to get it to work.
   A refactor is planned later after the initial release.
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 */
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/from';
 import {
@@ -52,7 +53,7 @@ import {
 
 type Type = Function;
 
-/*
+
 export const ObserveInput = (inputProp?: string) => {
   return (target, prop) => {
     target.__value = target.__value || {};
@@ -97,7 +98,7 @@ export const ObserveInput = (inputProp?: string) => {
     let l =  Input(inputProp)(target, inputProp || prop);
   }
 }
-*/
+
 
 
 export const ObserveViewChild = (compOrType: Type | string, eventName?: string, options?:any ) => {

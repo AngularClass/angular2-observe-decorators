@@ -8,7 +8,8 @@
   "scripts": {
     "typings": "typings",
     "prebuild": "rimraf dist",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@angular/core": "2.0.0-rc.4",
