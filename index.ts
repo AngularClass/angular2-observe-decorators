@@ -74,7 +74,8 @@ export const ObserveInput = (inputProp?: string) => {
 
 
     Object.defineProperty(target, prop, {
-      set(value){
+      set(value) {
+        if (value === undefined) return value;
         if (value instanceof EventEmitter || value instanceof BehaviorSubject) {
           target.__ee[prop] = value;
           target.__sub[prop] = true;
@@ -108,7 +109,8 @@ export const ObserveViewChild = (compOrType: Type | string, eventName?: string, 
     target.__sub = target.__sub || {};
 
     Object.defineProperty(target, prop, {
-      set(value){
+      set(value) {
+        if (value === undefined) return value;
         if (value instanceof EventEmitter) {
           target.__ee[prop] = value;
           target.ngOnDestroy = target.ngOnDestroy ? (() => {
@@ -159,7 +161,8 @@ export const ObserveContentChild = (compOrType: Type | string, eventName?: strin
     target.__sub = target.__sub || {};
 
     Object.defineProperty(target, prop, {
-      set(value){
+      set(value) {
+        if (value === undefined) return value;
         if (value instanceof EventEmitter) {
           target.__ee[prop] = value;
           target.ngOnDestroy = target.ngOnDestroy ? (() => {
@@ -209,7 +212,8 @@ export const ObserveViewChildren = (compOrType: Type | string, eventName?: strin
     target.__sub = target.__sub || {};
 
     Object.defineProperty(target, prop, {
-      set(value){
+      set(value) {
+        if (value === undefined) return value;
         if (value instanceof EventEmitter) {
           target.__ee[prop] = value;
           target.ngOnDestroy = target.ngOnDestroy ? (() => {
@@ -258,7 +262,8 @@ export const ObserveContentChildren = (compOrType: Type | string, eventName?: st
     target.__sub = target.__sub || {};
 
     Object.defineProperty(target, prop, {
-      set(value){
+      set(value) {
+        if (value === undefined) return value;
         if (value instanceof EventEmitter) {
           target.__ee[prop] = value;
           target.ngOnDestroy = target.ngOnDestroy ? (() => {
