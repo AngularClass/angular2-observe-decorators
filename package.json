@@ -1,6 +1,6 @@
 {
   "name": "@angularclass/observe-decorators",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reactive Angular 2 Observe Decorators ",
   "author": "PatrickJS <patrick@angularclass.com>",
   "license": "Apache-2.0",
