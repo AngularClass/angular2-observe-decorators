@@ -9,14 +9,14 @@ ___
 # Reactive Angular 2 Observe Decorators
 Reactive Angular 2 Observe Decorators by @AngularClass
 
-Reactive Observe Decorators
-`@ObserveViewChild`
-`@ObserveViewChildren`
-`@ObserveContentChild`
-`@ObserveContentChildren`
+Reactive Observe Decorators  
+`@ObserveViewChild`  
+`@ObserveViewChildren`  
+`@ObserveContentChild`  
+`@ObserveContentChildren`  
 
 
-All you need to do is set these valies to an `EventEmitter` instance for example.
+All you need to do is set these values to an `EventEmitter` instance for example.
 
 ```typescript
 //normal component with @Output event
@@ -45,7 +45,7 @@ class Incrementer {
 })
 export class AngularclassApp {
   //query and listen to component output
-  @ObserveViewChild(Incrementer) increments = new EventEmitter();
+  @ObserveViewChild(Incrementer) increments = new EventEmitter(); // same as ViewChild but you can use it now as an EventEmitter
   
   //query and listen to a DOM element
   @ObserveViewChild('decrement', 'click') decrements = new EventEmitter();
