@@ -1,4 +1,4 @@
-# Update: will be obsolete via [angular/issues/13248](https://github.com/angular/angular/issues/13248#issuecomment-268563351)**
+# Update: will be obsolete once [angular/issues/13248](https://github.com/angular/angular/issues/13248#issuecomment-268563351) is merged and released
 
 
 <p align="center">
